@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "cypress": "^10.6.0"
+  },
+  "devDependencies": {
+    "cypress-dark": "^1.8.3"
+  }
+}
