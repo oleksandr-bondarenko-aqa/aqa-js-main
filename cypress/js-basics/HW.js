@@ -10,10 +10,13 @@
     (Змінні типу інтеджер містять кількість продуктів в наявності у вигляді вхідних даних)
 */
 
-let hamburger = 5 - 4,
-    fries = 3 - 1;
+let hamburger = 3,
+    fries = 2;
 
-if (hamburger >= 0 && fries >= 0){
+let friendsEatHamburgers = 4,
+    friendsEatFries = 1;
+
+if (hamburger - friendsEatHamburgers > -1 && fries - friendsEatFries > -1){
     console.log("Ми поїли")
 } else {
     console.log("Ми йдемо в інше кафе")
@@ -37,18 +40,18 @@ if (price >= 1000 && price <= 1900){
     Результат виводити в консоль.
 */
 
-let price2 = 2222;
-if (price2 < 1000 || price2 > 1900){
+let price2 = 1111;
+if (price2 < 1000 && price2 > 1900){
     console.log(`Ціна ${price2} поза діапазоном 1000-1900`)
 } else {
     console.log(`Ціна ${price2} в діапазоні 1000-1900`)
 }
 
-let price3 = 1111;
-if (!(price3 < 1000 || price3 > 1900)){
-    console.log(`Ціна ${price3} в діапазоні 1000-1900`)
-} else {
+let price3 = 2222;
+if (!(price3 >= 1000 && price3 <= 1900)){
     console.log(`Ціна ${price3} поза діапазоном 1000-1900`)
+} else {
+    console.log(`Ціна ${price3} в діапазоні 1000-1900`)
 }
 
 /*
@@ -56,16 +59,16 @@ if (!(price3 < 1000 || price3 > 1900)){
     Результат виводити в консоль.
 */
 
-let season = 3;
+let season = 4;
 
 if (season === 1){
-    console.log('Весна')
-} else if (season === 2){
-    console.log('Літо')
-} else if (season === 3){
-    console.log('Осінь')
-} else if (season === 4){
     console.log('Зима')
+} else if (season === 2){
+    console.log('Весна')
+} else if (season === 3){
+    console.log('Літо')
+} else if (season === 4){
+    console.log('Осінь')
 }
 
 /*
@@ -78,14 +81,26 @@ if (season === 1){
 
 let a = 2,
     b = 13,
-    c = 9
+    c = 1
 
-if (a > b && a < c ){
-    console.log(`Середнє значення має число ${a}`)
-} else if (b > a && b < c){
-    console.log(`Середнє значення має число ${b}`)
-} else if (c > a && c < b){
-    console.log(`Середнє значення має число ${c}`)
+if (a > b && a > c){
+    if (b > c){
+        console.log(`Середнє значення має число ${b}`)
+    } else {
+        console.log(`Середнє значення має число ${c}`)
+    }
+} else if (b > a && b > c){
+    if (a > c){
+        console.log(`Середнє значення має число ${a}`)
+    } else {
+        console.log(`Середнє значення має число ${c}`)
+    }
+} else if (c > a && c > b){
+    if (a > b){
+        console.log(`Середнє значення має число ${a}`)
+    } else {
+        console.log(`Середнє значення має число ${b}`)
+    }
 }
 
 /*
@@ -155,7 +170,7 @@ switch (operator){
 */
 
 let str = "транклюкація";
-let vowels = /[аеиіоуїюя]/g;
+let vowels = /[аеиіоуїюяАЕИІОУЇЮЯ]/g;
 console.log(str.replace(vowels, ''))
 
 /*
@@ -167,20 +182,33 @@ console.log(str.replace(vowels, ''))
     https://www.kyivdictionary.com/uk/words/conjugation/?word=%D0%BC%D0%B5%D1%82%D1%80&lang=uk
 */
 
-let meters = 6781;
+let meters = 11300;
 let kilometers = meters / 1000;
-let checkNumber = meters.toString().slice(-1);
-let checkTens = meters.toString().slice(-2);
+const checkMetersSingleNumbers = meters.toString().slice(-1); // перевірка цифр 2-4
+const checkMetersTens = meters.toString().slice(-2); // перевірка цифр 11-19
+const checkKilometersSingleNumbers = kilometers.toString().slice(-1); // перевірка цифр 2-4
+const checkKilometersTens = kilometers.toString().slice(-2); // перевірка цифр 11-19
 
-let ending1 = "и",
-    ending2 = "ів";
+const ending1 = "и",
+      ending2 = "ів";
 
-if (checkTens === "11" || checkTens === "12" || checkTens === "13" || checkTens === "14" || checkTens === "15" || checkTens === "16" || checkTens === "17" || checkTens === "18" || checkTens === "19"){
+if (checkMetersTens === "11" || checkMetersTens === "12" || checkMetersTens === "13" || checkMetersTens === "14" || checkMetersTens === "15" || checkMetersTens === "16" || checkMetersTens === "17" || checkMetersTens === "18" || checkMetersTens === "19"){
     console.log(`${meters} метр${ending2} це ${kilometers} кілометр${ending2}`)
-} else if (checkNumber === "1"){
+} else if (checkMetersSingleNumbers === "1"){
     console.log(`${meters} метр це ${kilometers} кілометр`)
-} else if (checkNumber === "2" || checkNumber === "3" || checkNumber === "4"){
+} else if (checkMetersSingleNumbers === "2" || checkMetersSingleNumbers === "3" || checkMetersSingleNumbers === "4"){
     console.log(`${meters} метр${ending1} це ${kilometers} кілометр${ending1}`)
+} else if (checkMetersSingleNumbers === "0"){
+    if (checkKilometersTens === "11" || checkKilometersTens === "12" || checkKilometersTens === "13" || checkKilometersTens === "14" || checkKilometersTens === "15" || checkKilometersTens === "16" || checkKilometersTens === "17" || checkKilometersTens === "18" || checkKilometersTens === "19"){
+        console.log(`${meters} метр${ending2} це ${kilometers} кілометр${ending2}`)
+    } else if (checkKilometersSingleNumbers === "1"){
+        console.log(`${meters} метр${ending2} це ${kilometers} кілометр`)
+    } else if (checkKilometersSingleNumbers === "2" || checkKilometersSingleNumbers === "3" || checkKilometersSingleNumbers === "4"){
+        console.log(`${meters} метр${ending2} це ${kilometers} кілометр${ending1}`)
+    } else {
+        console.log(`${meters} метр${ending2} це ${kilometers} кілометр${ending2}`)
+    }
 } else {
     console.log(`${meters} метр${ending2} це ${kilometers} кілометр${ending2}`)
 }
+
