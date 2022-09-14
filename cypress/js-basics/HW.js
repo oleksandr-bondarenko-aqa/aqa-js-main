@@ -153,7 +153,7 @@ whichDayOfWeekIsIt(5);
     Результат виводити в консоль.
 */
 
-function calculateNumbers(num1, num2, operator){
+let calculateNumbers = (num1, num2, operator) => {
     switch (operator){
         case "+":
             operator = num1 + num2
