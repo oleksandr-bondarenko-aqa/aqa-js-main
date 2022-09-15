@@ -8,7 +8,19 @@ it("Handle Promise", () => {
     cy.get('span[class="menu-title ng-tns-c141-11"]').click()
     cy.get('svg[class="eva eva-menu-outline"]').click()
 
-    cy.get('nb-card').contains('Using the Grid').find('form="inputEmail1"').should('Contain', 'Email')
+    cy.contains('nb-card', 'Using the Grid').find('[for="inputEmail1"]').should('contain', 'Email');
+    cy.contains('nb-card', 'Using the Grid').find('[for="inputPassword2"]').should('contain', 'Password');
+
+    // let usingTheGridForm = cy.contains('nb-card', 'Using the Grid');
+    //
+    // usingTheGridForm.find('[for="inputEmail1"]').should('contain', 'Email');
+    // usingTheGridForm.find('[for="inputPassword2"]').should('contain', 'Password');
+
+
+    cy.contains('nb-card', 'Using the Grid').then((form) => {
+        form.find('[for="inputEmail1"]');
+        form.find('[for="inputPassword2"]');
+    })
 
     // // Inline forms
     //
