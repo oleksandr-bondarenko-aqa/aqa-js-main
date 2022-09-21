@@ -119,7 +119,7 @@ const cars = [
 ];
 
 function carsForSale(cars) {
-    cars.push({carBrand: 'BNW', price: 300, isAvailableForSale: true})
+    cars.push(cars[0])
     return cars
 }
 
@@ -214,33 +214,33 @@ console.log(findProductById(4511, products));
  *
  * 5. Якщо масив не відсортований - повернути "Масив не відсортований"
  */
-//
-// const a = [5, 'abc', 10, 1]
-// const b = [4, 10, 14, 25, 25, 50]
-// const c = [150, 132, 80, 40]
-// const d = [15, 26, 10, 23, 85]
-//
-// function arraySortInfo(inputArray){
-//     const checkForNan = "Деякі елементи не є числами";
-//     const arraySortedIncreasing = "Масив відсортований за зростанням";
-//     const arraySortedDecreasing = "Масив відсортований за зростанням";
-//     const arrayNotSorted = "Масив не відсортований"
-//
-//     if (inputArray.every((element) => {return typeof element === 'number';})){
-//         return checkForNan;
-//     } else if (inputArray.every((element, index) => {})){
-//         return arraySortedIncreasing;
-//     } else if (inputArray.every((element, index) => {})){
-//         return arraySortedDecreasing;
-//     } else if (inputArray.every((element, index) => {})){
-//         return arrayNotSorted;
-//     }
-// }
-//
-//  console.log(arraySortInfo(a)) // Деякі елементи не є числами
-//  console.log(arraySortInfo(b)) // Масив відсортований за зростанням
-//  console.log(arraySortInfo(c)) // Масив відсортований за зростанням
-//  console.log(arraySortInfo(d)) // Масив не відсортований
+
+const a = [5, 'abc', 10, 1]
+const b = [4, 10, 14, 25, 25, 50]
+const c = [150, 132, 80, 40]
+const d = [15, 26, 10, 23, 85]
+
+function arraySortInfo(inputArray){
+    const checkForNan = "Деякі елементи не є числами";
+    const arraySortedIncreasing = "Масив відсортований за зростанням";
+    const arraySortedDecreasing = "Масив відсортований за спаданням";
+    const arrayNotSorted = "Масив не відсортований"
+
+    if (inputArray.some((element) => {return typeof element !== 'number';})){
+        return checkForNan;
+    } else if (inputArray.every((element, index) => {return index === 0 || element >= inputArray[index - 1]})){
+        return arraySortedIncreasing;
+    } else if (inputArray.every((element, index) => {return index === 0 || element <= inputArray[index - 1]})){
+        return arraySortedDecreasing;
+    } else {
+        return arrayNotSorted;
+    }
+}
+
+ console.log(arraySortInfo(a)) // Деякі елементи не є числами
+ console.log(arraySortInfo(b)) // Масив відсортований за зростанням
+ console.log(arraySortInfo(c)) // Масив відсортований за спаданням
+ console.log(arraySortInfo(d)) // Масив не відсортований
 
  /**
   * ПІДКАЗКИ
