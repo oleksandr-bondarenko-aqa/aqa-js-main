@@ -46,16 +46,16 @@
 //         console.log(data)
 //     })
 // })
-
-const req5 = new Promise((resolve, reject) => {
-    //.....
-    //.....
-
-    if (errorHappened){
-        reject();
-    }
-})
-
-req5.catch(() => {
-    console.log('Some error happened')
-})
+//
+// const req5 = new Promise((resolve, reject) => {
+//     //.....
+//     //.....
+//
+//     if (errorHappened){
+//         reject();
+//     }
+// })
+//
+// req5.catch(() => {
+//     console.log('Some error happened')
+// })
