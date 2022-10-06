@@ -47,91 +47,80 @@
 
 describe('Homework test suite lesson 14', () => {
 
-    before(() => {
-        cy.visit('https://sanitarskyi-ngx-admin.herokuapp.com');
-
-        // navigate to Toastr page
-
-        cy.get('nb-card-header:contains("Material Dark")').click();
-        cy.get('a[class="ng-tns-c141-9 ng-star-inserted"]').click();
-        cy.get('span[class="menu-title ng-tns-c141-19"]').click();
-        cy.get('span[class="menu-title ng-tns-c141-23"]').click();
-    })
-
     // Agrs and assertions for tests
 
-    const args = [
+    const testData = [
         {
-            position: '#nb-option-25',
-            title: 'Test top-left',
-            content: 'With success type',
-            time: '2000',
-            type: '#nb-option-33'
+            args: {
+                position: 'top-left',
+                title: 'Test top-left',
+                content: 'With success type',
+                time: '1000',
+                type: 'success'
+            },
+            expected: {
+                icon: 'checkmark',
+                title: 'Test top-left',
+                content: 'With success type',
+                color: 'rgb(96, 175, 32)',
+                position: 'M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z'
+            }
         },
-
         {
-            position: '#nb-option-26',
-            title: 'Test bottom-left',
-            content: 'With info type',
-            time: '2000',
-            type: '#nb-option-34'
+            args: {
+                position: 'bottom-left',
+                title: 'Test bottom-left',
+                content: 'With info type',
+                time: '1000',
+                type: 'info'
+            },
+            expected: {
+                icon: 'question-mark',
+                title: 'Test bottom-left',
+                content: 'With info type',
+                color: 'rgb(4, 149, 238)',
+                position: 'M17 9A5 5 0 0 0 7 9a1 1 0 0 0 2 0 3 3 0 1 1 3 3 1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-1.1A5 5 0 0 0 17 9z'
+            }
         },
-
         {
-            position: '#nb-option-28',
-            title: 'Test top-end',
-            content: 'With warning type',
-            time: '2000',
-            type: '#nb-option-35'
+            args: {
+                position: 'top-end',
+                title: 'Test top-end',
+                content: 'With warning type',
+                time: '1000',
+                type: 'warning'
+            },
+            expected: {
+                icon: 'alert-triangle',
+                title: 'Test top-end',
+                content: 'With warning type',
+                color: 'rgb(255, 159, 5)',
+                position: 'M22.56 16.3L14.89 3.58a3.43 3.43 0 0 0-5.78 0L1.44 16.3a3 3 0 0 0-.05 3A3.37 3.37 0 0 0 4.33 21h15.34a3.37 3.37 0 0 0 2.94-1.66 3 3 0 0 0-.05-3.04zm-1.7 2.05a1.31 1.31 0 0 1-1.19.65H4.33a1.31 1.31 0 0 1-1.19-.65 1 1 0 0 1 0-1l7.68-12.73a1.48 1.48 0 0 1 2.36 0l7.67 12.72a1 1 0 0 1 .01 1.01z'
+            }
         },
-
         {
-            position: '#nb-option-31',
-            title: 'Test bottom-start',
-            content: 'With danger type',
-            time: '2000',
-            type: '#nb-option-36'
+            args: {
+                position: 'bottom-end',
+                title: 'Test bottom-end',
+                content: 'With danger type',
+                time: '1000',
+                type: 'danger'
+            },
+            expected: {
+                icon: 'flash',
+                title: 'Test bottom-end',
+                content: 'With danger type',
+                color: 'rgb(176, 0, 32)',
+                position: 'M11.11 23a1 1 0 0 1-.34-.06 1 1 0 0 1-.65-1.05l.77-7.09H5a1 1 0 0 1-.83-1.56l7.89-11.8a1 1 0 0 1 1.17-.38 1 1 0 0 1 .65 1l-.77 7.14H19a1 1 0 0 1 .83 1.56l-7.89 11.8a1 1 0 0 1-.83.44zM6.87 12.8H12a1 1 0 0 1 .74.33 1 1 0 0 1 .25.78l-.45 4.15 4.59-6.86H12a1 1 0 0 1-1-1.11l.45-4.15z'
+            }
         }
     ]
-
-    const expected = [
-
-        {
-            icon: 'checkmark',
-            title: 'Test top-left',
-            content: 'With success type',
-            color: 'rgb(96, 175, 32)',
-            position: 'M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z'
-        },
-        {
-            icon: 'question-mark',
-            title: 'Test bottom-left',
-            content: 'With info type',
-            color: 'rgb(4, 149, 238)',
-            position: 'M17 9A5 5 0 0 0 7 9a1 1 0 0 0 2 0 3 3 0 1 1 3 3 1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-1.1A5 5 0 0 0 17 9z'
-        },
-        {
-            icon: 'alert-triangle',
-            title: 'Test top-end',
-            content: 'With warning type',
-            color: 'rgb(255, 159, 5)',
-            position: 'M22.56 16.3L14.89 3.58a3.43 3.43 0 0 0-5.78 0L1.44 16.3a3 3 0 0 0-.05 3A3.37 3.37 0 0 0 4.33 21h15.34a3.37 3.37 0 0 0 2.94-1.66 3 3 0 0 0-.05-3.04zm-1.7 2.05a1.31 1.31 0 0 1-1.19.65H4.33a1.31 1.31 0 0 1-1.19-.65 1 1 0 0 1 0-1l7.68-12.73a1.48 1.48 0 0 1 2.36 0l7.67 12.72a1 1 0 0 1 .01 1.01z'
-        },
-        {
-            icon: 'flash',
-            title: 'Test bottom-start',
-            content: 'With danger type',
-            color: 'rgb(176, 0, 32)',
-            position: 'M11.11 23a1 1 0 0 1-.34-.06 1 1 0 0 1-.65-1.05l.77-7.09H5a1 1 0 0 1-.83-1.56l7.89-11.8a1 1 0 0 1 1.17-.38 1 1 0 0 1 .65 1l-.77 7.14H19a1 1 0 0 1 .83 1.56l-7.89 11.8a1 1 0 0 1-.83.44zM6.87 12.8H12a1 1 0 0 1 .74.33 1 1 0 0 1 .25.78l-.45 4.15 4.59-6.86H12a1 1 0 0 1-1-1.11l.45-4.15z'
-        }
-    ]
-
 
     // Test action methods
 
     const selectToastPosition = (args) => {
         cy.get('.mat-ripple.position-select.appearance-outline.size-medium.status-basic.shape-rectangle.nb-transition button').click()
-        cy.get(args.position).click();
+        cy.get(`nb-option[ng-reflect-value="${args.position}"]`).click();
     }
 
     const inputTitle = (args) => {
@@ -163,7 +152,7 @@ describe('Homework test suite lesson 14', () => {
 
     const selectToastType = (args) => {
         cy.get('label').contains('Toast type:').siblings().click()
-        cy.get(args.type).click();
+        cy.get(`nb-option[ng-reflect-value="${args.type}"]`).click();
     }
 
     const showToast = () => {
@@ -192,54 +181,30 @@ describe('Homework test suite lesson 14', () => {
 
     // Tests
 
-    it(('Check top-left success'), () => {
+    before(() => {
+        cy.visit('https://sanitarskyi-ngx-admin.herokuapp.com');
 
-        selectToastPosition(args[0]);
-        inputTitle(args[0]);
-        inputContent(args[0]);
-        selectDisplayTime(args[0]);
-        selectToastType(args[0]);
-        showToast();
-        verifyToast(expected[0]);
+        // navigate to Toastr page
 
+        cy.get('nb-card-header:contains("Material Dark")').click();
+        cy.get('a[class="ng-tns-c141-9 ng-star-inserted"]').click();
+        cy.get('span[class="menu-title ng-tns-c141-19"]').click();
+        cy.get('span[class="menu-title ng-tns-c141-23"]').click();
     })
 
-    it(('Check bottom-left info'), () => {
+    testData.forEach(({args, expected}) => {
+        it((`Check toast position: ${args.position} and toast type: ${args.type}`), () => {
 
-        selectToastPosition(args[1]);
-        inputTitle(args[1]);
-        inputContent(args[1]);
-        selectDisplayTime(args[1]);
-        selectToastType(args[1]);
-        showToast();
-        verifyToast(expected[1]);
+            selectToastPosition(args);
+            inputTitle(args);
+            inputContent(args);
+            selectDisplayTime(args);
+            selectToastType(args);
+            showToast();
+            verifyToast(expected);
 
+        })
     })
-
-    it(('Check bottom-start danger'), () => {
-
-        selectToastPosition(args[2]);
-        inputTitle(args[2]);
-        inputContent(args[2]);
-        selectDisplayTime(args[2]);
-        selectToastType(args[2]);
-        showToast();
-        verifyToast(expected[2]);
-
-    })
-
-    it(('Check bottom-left info'), () => {
-
-        selectToastPosition(args[3]);
-        inputTitle(args[3]);
-        inputContent(args[3]);
-        selectDisplayTime(args[3]);
-        selectToastType(args[3]);
-        showToast();
-        verifyToast(expected[3]);
-
-    })
-
 })
 
 /**
